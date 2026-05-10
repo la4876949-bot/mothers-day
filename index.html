@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mother's Day 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;700;900&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #000;
+  color: #fff;
+  font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== 全屏开场 ===== */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* 光晕背景 */
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(233,30,99,0.15) 0%, transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.5; transform: translate(-50%,-50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%,-50%) scale(1.2); }
+}
+
+/* 粒子 canvas */
+#particles {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* 顶部导航栏 (Apple style) */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: 48px;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.nav-text {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.8);
+  letter-spacing: 0.5px;
+}
+
+/* 大标题 Apple style */
+.hero-content {
+  position: relative; z-index: 10;
+  text-align: center;
+}
+
+.hero-eyebrow {
+  font-size: clamp(14px, 2vw, 20px);
+  font-weight: 400;
+  color: #e91e63;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: revealText 1s ease forwards 0.5s;
+}
+
+.hero-title {
+  font-size: clamp(48px, 12vw, 140px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -2px;
+  background: linear-gradient(180deg, #fff 20%, rgba(255,255,255,0.6) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0;
+  animation: revealTitle 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.8s;
+  position: relative;
+}
+
+.hero-title-cn {
+  font-size: clamp(36px, 8vw, 80px);
+  font-weight: 700;
+  letter-spacing: 12px;
+  background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.5) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-top: 10px;
+  opacity: 0;
+  animation: revealTitle 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards 1.2s;
+}
+
+.hero-subtitle {
+  font-size: clamp(16px, 2.5vw, 24px);
+  font-weight: 300;
+  color: rgba(255,255,255,0.5);
+  margin-top: 30px;
+  letter-spacing: 2px;
+  opacity: 0;
+  animation: revealText 1s ease forwards 1.8s;
+}
+
+/* 滚动提示 */
+.scroll-hint {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  opacity: 0;
+  animation: revealText 1s ease forwards 2.5s;
+}
+.scroll-hint span {
+  display: block;
+  width: 24px; height: 38px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 12px;
+  position: relative;
+  margin: 0 auto 8px;
+}
+.scroll-hint span::after {
+  content: '';
+  position: absolute;
+  width: 4px; height: 8px;
+  background: rgba(255,255,255,0.6);
+  border-radius: 2px;
+  top: 6px; left: 50%;
+  transform: translateX(-50%);
+  animation: scrollDot 1.5s ease-in-out infinite;
+}
+@keyframes scrollDot {
+  0% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(14px); }
+}
+.scroll-hint p {
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 2px;
+}
+
+@keyframes revealTitle {
+  from { opacity: 0; transform: translateY(40px); filter: blur(10px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+@keyframes revealText {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== 全宽内容块 (Apple 产品介绍风格) ===== */
+.section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 渐入动画 */
+.fade-section {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.fade-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 大数字统计 (Apple style) */
+.stats-grid {
+  display: flex;
+  gap: clamp(30px, 8vw, 100px);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 50px;
+}
+.stat-item { text-align: center; }
+.stat-number {
+  font-size: clamp(48px, 10vw, 100px);
+  font-weight: 900;
+  background: linear-gradient(135deg, #e91e63, #ff6090);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+.stat-unit {
+  font-size: clamp(20px, 4vw, 36px);
+  font-weight: 300;
+  background: linear-gradient(135deg, #e91e63, #ff6090);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.stat-label {
+  font-size: clamp(14px, 2vw, 20px);
+  color: rgba(255,255,255,0.5);
+  font-weight: 300;
+  margin-top: 10px;
+  letter-spacing: 1px;
+}
+
+.section-label {
+  font-size: clamp(14px, 2vw, 18px);
+  color: #e91e63;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.section-heading {
+  font-size: clamp(32px, 7vw, 72px);
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-top: 15px;
+  line-height: 1.1;
+}
+.section-body {
+  font-size: clamp(16px, 2.5vw, 22px);
+  font-weight: 300;
+  color: rgba(255,255,255,0.6);
+  max-width: 600px;
+  text-align: center;
+  line-height: 1.8;
+  margin-top: 20px;
+}
+
+/* 时间线 */
+.timeline {
+  position: relative;
+  max-width: 700px;
+  width: 100%;
+  margin-top: 60px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%; top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(233,30,99,0.5), transparent);
+}
+.timeline-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 60px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.timeline-item:nth-child(odd) { flex-direction: row; }
+.timeline-item:nth-child(even) { flex-direction: row-reverse; }
+
+.tl-content {
+  flex: 1;
+  padding: 20px 30px;
+}
+.timeline-item:nth-child(odd) .tl-content { text-align: right; }
+.timeline-item:nth-child(even) .tl-content { text-align: left; }
+
+.tl-age {
+  font-size: clamp(28px, 5vw, 44px);
+  font-weight: 900;
+  background: linear-gradient(135deg, #e91e63, #ff80ab);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.tl-text {
+  font-size: clamp(14px, 2vw, 18px);
+  color: rgba(255,255,255,0.6);
+  font-weight: 300;
+  margin-top: 5px;
+}
+.tl-dot {
+  width: 14px; height: 14px;
+  background: #e91e63;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 20px rgba(233,30,99,0.5);
+  position: relative;
+  z-index: 2;
+}
+
+/* 花朵 SVG - 3D 旋转 */
+.flower-3d {
+  width: clamp(200px, 40vw, 400px);
+  height: clamp(200px, 40vw, 400px);
+  margin: 40px auto;
+  animation: slowRotate 20s linear infinite;
+  filter: drop-shadow(0 0 40px rgba(233,30,99,0.3));
+}
+@keyframes slowRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 最终 CTA */
+.cta-section {
+  background: linear-gradient(180deg, #000 0%, #1a0a10 100%);
+}
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 50px;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #e91e63, #f06292);
+  color: #fff;
+  font-size: clamp(16px, 2.5vw, 22px);
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 40px;
+  transition: all 0.3s;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+.cta-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px rgba(233,30,99,0.4);
+}
+
+/* 祝福弹幕 */
+.barrage {
+  position: fixed;
+  pointer-events: none;
+  z-index: 500;
+  font-size: 20px;
+  color: rgba(233,30,99,0.6);
+  white-space: nowrap;
+  animation: barrageMove 8s linear forwards;
+}
+@keyframes barrageMove {
+  from { transform: translateX(100vw); }
+  to { transform: translateX(-100%); }
+}
+
+/* 底部 */
+.footer {
+  padding: 60px 20px;
+  text-align: center;
+  font-size: 13px;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 1px;
+}
+
+/* 分隔线 */
+.divider {
+  width: 60px; height: 1px;
+  background: rgba(233,30,99,0.4);
+  margin: 30px auto;
+}
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<div class="nav">
+  <span class="nav-text">🍎 Mother's Day · 母亲节 · 2026</span>
+</div>
+
+<!-- ===== 第一屏：开场 ===== -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Today we celebrate</div>
+    <div class="hero-title">Mom</div>
+    <div class="hero-title-cn">母亲节快乐</div>
+    <div class="hero-subtitle">2026.05.10 — 致世界上最伟大的她</div>
+  </div>
+  <div class="scroll-hint">
+    <span></span>
+    <p>SCROLL</p>
+  </div>
+</section>
+
+<!-- ===== 第二屏：数据 ===== -->
+<section class="section">
+  <div class="fade-section">
+    <div class="section-label">by the numbers</div>
+    <div class="section-heading">爱的计量单位</div>
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div><span class="stat-number" data-target="365">0</span><span class="stat-unit">天</span></div>
+        <div class="stat-label">全年无休的守护</div>
+      </div>
+      <div class="stat-item">
+        <div><span class="stat-number" data-target="24">0</span><span class="stat-unit">小时</span></div>
+        <div class="stat-label">随时在线的牵挂</div>
+      </div>
+      <div class="stat-item">
+        <div><span class="stat-number" data-target="1">0</span><span class="stat-unit">个人</span></div>
+        <div class="stat-label">独一无二的你</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 第三屏：时间线 ===== -->
+<section class="section">
+  <div class="fade-section">
+    <div class="section-label">your journey together</div>
+    <div class="section-heading">成长的每一步</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="tl-content">
+          <div class="tl-age">出生</div>
+          <div class="tl-text">她用全世界最温柔的怀抱迎接你</div>
+        </div>
+        <div class="tl-dot"></div>
+        <div class="tl-content"></div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-content"></div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-age">3 岁</div>
+          <div class="tl-text">牵着你的手，教你认识这个世界</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-content">
+          <div class="tl-age">6 岁</div>
+          <div class="tl-text">第一天上学，她在门口站了很久</div>
+        </div>
+        <div class="tl-dot"></div>
+        <div class="tl-content"></div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-content"></div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-age">18 岁</div>
+          <div class="tl-text">送你远行，笑着说"别担心"，转身却红了眼</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-content">
+          <div class="tl-age">现在</div>
+          <div class="tl-text">换你来守护她了</div>
+        </div>
+        <div class="tl-dot"></div>
+        <div class="tl-content"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 第四屏：花朵 ===== -->
+<section class="section">
+  <div class="fade-section">
+    <div class="section-label">for you, mom</div>
+    <div class="section-heading">送给你</div>
+    <svg class="flower-3d" viewBox="0 0 400 400">
+      <defs>
+        <radialGradient id="petalGrad1" cx="50%" cy="30%">
+          <stop offset="0%" stop-color="#FF80AB"/>
+          <stop offset="100%" stop-color="#E91E63"/>
+        </radialGradient>
+        <radialGradient id="petalGrad2" cx="50%" cy="30%">
+          <stop offset="0%" stop-color="#F8BBD0"/>
+          <stop offset="100%" stop-color="#EC407A"/>
+        </radialGradient>
+        <radialGradient id="centerGrad" cx="50%" cy="50%">
+          <stop offset="0%" stop-color="#FFE082"/>
+          <stop offset="100%" stop-color="#FF8F00"/>
+        </radialGradient>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="3" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <!-- 花瓣层 -->
+      <g filter="url(#glow)">
+        <ellipse cx="200" cy="130" rx="45" ry="80" fill="url(#petalGrad1)" opacity="0.9"/>
+        <ellipse cx="200" cy="130" rx="45" ry="80" fill="url(#petalGrad1)" opacity="0.9" transform="rotate(60 200 200)"/>
+        <ellipse cx="200" cy="130" rx="45" ry="80" fill="url(#petalGrad1)" opacity="0.9" transform="rotate(120 200 200)"/>
+        <ellipse cx="200" cy="130" rx="45" ry="80" fill="url(#petalGrad2)" opacity="0.85" transform="rotate(180 200 200)"/>
+        <ellipse cx="200" cy="130" rx="45" ry="80" fill="url(#petalGrad2)" opacity="0.85" transform="rotate(240 200 200)"/>
+        <ellipse cx="200" cy="130" rx="45" ry="80" fill="url(#petalGrad2)" opacity="0.85" transform="rotate(300 200 200)"/>
+        <!-- 内层花瓣 -->
+        <ellipse cx="200" cy="150" rx="30" ry="55" fill="url(#petalGrad1)" opacity="0.7" transform="rotate(30 200 200)"/>
+        <ellipse cx="200" cy="150" rx="30" ry="55" fill="url(#petalGrad1)" opacity="0.7" transform="rotate(90 200 200)"/>
+        <ellipse cx="200" cy="150" rx="30" ry="55" fill="url(#petalGrad1)" opacity="0.7" transform="rotate(150 200 200)"/>
+        <ellipse cx="200" cy="150" rx="30" ry="55" fill="url(#petalGrad2)" opacity="0.65" transform="rotate(210 200 200)"/>
+        <ellipse cx="200" cy="150" rx="30" ry="55" fill="url(#petalGrad2)" opacity="0.65" transform="rotate(270 200 200)"/>
+        <ellipse cx="200" cy="150" rx="30" ry="55" fill="url(#petalGrad2)" opacity="0.65" transform="rotate(330 200 200)"/>
+      </g>
+      <!-- 花蕊 -->
+      <circle cx="200" cy="200" r="28" fill="url(#centerGrad)"/>
+      <circle cx="192" cy="194" r="4" fill="#F57F17" opacity="0.6"/>
+      <circle cx="208" cy="196" r="3" fill="#F57F17" opacity="0.5"/>
+      <circle cx="200" cy="210" r="3.5" fill="#F57F17" opacity="0.55"/>
+    </svg>
+    <div class="section-body">
+      这朵花不会凋谢，<br>
+      就像我对你的爱，永远不会。
+    </div>
+  </div>
+</section>
+
+<!-- ===== 第五屏：结语 ===== -->
+<section class="section cta-section">
+  <div class="fade-section">
+    <div class="section-label">one more thing</div>
+    <div class="section-heading" style="background: linear-gradient(135deg, #e91e63, #ff80ab); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+      妈，我爱你
+    </div>
+    <div class="divider"></div>
+    <div class="section-body">
+      不只是今天，<br>
+      是昨天、今天、和未来的每一天。
+    </div>
+    <a class="cta-btn" onclick="createBurst(event)">
+      💐 送出祝福
+    </a>
+  </div>
+</section>
+
+<div class="footer">
+  Designed with ❤️ for the greatest person in the world — Mom
+</div>
+
+<script>
+// ===== 粒子系统 =====
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let W, H;
+function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+resize();
+window.addEventListener('resize', resize);
+
+class Particle {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = Math.random() * W;
+    this.y = Math.random() * H;
+    this.size = Math.random() * 2 + 0.5;
+    this.speedY = -(Math.random() * 0.3 + 0.1);
+    this.speedX = (Math.random() - 0.5) * 0.2;
+    this.opacity = Math.random() * 0.5 + 0.1;
+    this.color = Math.random() > 0.5 ? '233,30,99' : '255,255,255';
+  }
+  update() {
+    this.y += this.speedY;
+    this.x += this.speedX;
+    if (this.y < -10) this.reset(), this.y = H + 10;
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(${this.color},${this.opacity})`;
+    ctx.fill();
+  }
+}
+
+const particles = Array.from({ length: 120 }, () => new Particle());
+(function animate() {
+  ctx.clearRect(0, 0, W, H);
+  particles.forEach(p => { p.update(); p.draw(); });
+  requestAnimationFrame(animate);
+})();
+
+// ===== 滚动渐入 =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      // 数字滚动
+      if (e.target.querySelector('.stat-number')) {
+        e.target.querySelectorAll('.stat-number').forEach(el => {
+          const target = +el.dataset.target;
+          let current = 0;
+          const step = Math.ceil(target / 60);
+          const timer = setInterval(() => {
+            current += step;
+            if (current >= target) { current = target; clearInterval(timer); }
+            el.textContent = current;
+          }, 30);
+        });
+      }
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.fade-section, .timeline-item').forEach(el => observer.observe(el));
+
+// ===== 时间线逐项延迟 =====
+document.querySelectorAll('.timeline-item').forEach((el, i) => {
+  el.style.transitionDelay = (i * 0.15) + 's';
+});
+
+// ===== 祝福弹幕 =====
+const blessings = [
+  '妈妈辛苦了 💕', '永远爱您 🌷', '谢谢妈妈 ❤️', '您是最好的妈妈',
+  '身体健康 💪', '天天开心 ✨', '妈妈我爱你', '岁月静好 🌸',
+  '平安喜乐 🎊', '幸福安康 💖'
+];
+function spawnBarrage() {
+  const el = document.createElement('div');
+  el.className = 'barrage';
+  el.textContent = blessings[Math.floor(Math.random() * blessings.length)];
+  el.style.top = Math.random() * 80 + 10 + '%';
+  el.style.animationDuration = (6 + Math.random() * 4) + 's';
+  document.body.appendChild(el);
+  el.addEventListener('animationend', () => el.remove());
+}
+setInterval(spawnBarrage, 2500);
+
+// ===== 点击粒子爆发 =====
+function createBurst(e) {
+  const colors = ['#E91E63','#FF80AB','#F48FB1','#FFCDD2','#FFE082','#fff'];
+  for (let i = 0; i < 40; i++) {
+    const dot = document.createElement('div');
+    const angle = (Math.PI * 2 / 40) * i;
+    const velocity = 80 + Math.random() * 120;
+    const dx = Math.cos(angle) * velocity;
+    const dy = Math.sin(angle) * velocity;
+    dot.style.cssText = `
+      position: fixed; left: ${e.clientX}px; top: ${e.clientY}px;
+      width: ${4 + Math.random()*6}px; height: ${4 + Math.random()*6}px;
+      background: ${colors[Math.floor(Math.random()*colors.length)]};
+      border-radius: 50%; pointer-events: none; z-index: 9999;
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity: 1;
+    `;
+    document.body.appendChild(dot);
+    requestAnimationFrame(() => {
+      dot.style.transform = `translate(${dx}px, ${dy}px)`;
+      dot.style.opacity = '0';
+    });
+    setTimeout(() => dot.remove(), 1000);
+  }
+}
+
+// 随机屏幕闪烁效果
+setInterval(() => {
+  if (Math.random() > 0.7) {
+    const flash = document.createElement('div');
+    flash.style.cssText = `
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(233,30,99,0.03);
+      pointer-events: none;
+      animation: flashFade 0.5s ease forwards;
+    `;
+    document.body.appendChild(flash);
+    flash.addEventListener('animationend', () => flash.remove());
+  }
+}, 4000);
+
+// 添加 flash 动画
+const style = document.createElement('style');
+style.textContent = `@keyframes flashFade { 0%{opacity:1} 100%{opacity:0} }`;
+document.head.appendChild(style);
+</script>
+</body>
+</html>
